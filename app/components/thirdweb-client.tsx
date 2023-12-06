@@ -1,3 +1,3 @@
-'use client';
+"use client";
 
-export { ThirdwebProvider, ConnectWallet } from '@thirdweb-dev/react';
+export { ThirdwebProvider, ConnectWallet } from "@thirdweb-dev/react";
