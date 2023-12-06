@@ -1,17 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
-import {
-  NFT,
-  useAddress,
-  useContract,
-  useOwnedNFTs,
-} from "@thirdweb-dev/react";
-import Image from "next/image";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { NFT, useContract, useOwnedNFTs } from "@thirdweb-dev/react";
+import InventoryItem from "./inventory-item";
 
-export default function Inventory() {
-  const [message, setMessage] = useState<string>("Loading...");
-  const address = useAddress();
+export default function Inventory({ address }: { address?: string }) {
   const {
     contract,
     isLoading: loadingContract,
@@ -24,51 +15,21 @@ export default function Inventory() {
     error: errorNFT,
   } = useOwnedNFTs(contract, address);
 
-  // CONTRACT DEBUG
-  useEffect(() => {
-    if (contract) {
-      console.log(contract);
-    }
-
-    if (errorContract) {
-      setMessage("Could not load inventory.");
-    }
-  }, [contract, loadingContract, errorContract]);
-
-  // NFT DEBUG
-  useEffect(() => {
-    if (inventory) {
-      if (!inventory.length) {
-        setMessage("Empty.");
-      }
-    }
-
-    if (errorNFT) {
-      alert("error");
-      setMessage("Could not load inventory.");
-    }
-  }, [inventory, loadingNFT, errorNFT]);
-
   return (
-    <div className="p-4 m-4 rounded-lg border border-white">
-      {inventory ? (
-        <div className=" text-lg flex justify-start space-x-4">
+    <div className="p-4 mx-auto my-8 rounded-lg bg-foreground w-fit fixed bottom-0 left-1/2 transform -translate-x-1/2">
+      {inventory && inventory.length ? (
+        <div className="text-lg flex justify-center space-x-4">
           {inventory.map((item: NFT) => {
-            return (
-              <Image
-                className="border border-white rounded-lg hover:border-2 cursor-pointer"
-                src={item.metadata.image as string | StaticImport}
-                alt="Vercel Logo"
-                width={50}
-                height={50}
-                priority
-              />
-            );
+            return <InventoryItem item={item} />;
           })}
         </div>
       ) : (
-        <h3 className="text-lg flex items-center justify-center text-center">
-          {message}
+        <h3 className="text-lg text-white flex items-center justify-center text-center">
+          {inventory && !inventory.length
+            ? "Your inventory is empty."
+            : errorContract || errorNFT
+              ? "Could not load inventory"
+              : "Loading Inventory..."}
         </h3>
       )}
     </div>

@@ -13,8 +13,6 @@ export default function MintButton({
 }) {
   const { contract } = useContract(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS);
 
-  console.log(contract);
-
   return (
     <button
       className="border border-white rounded-lg text-white hover:text-black hover:bg-white p-4 transition w-full"
