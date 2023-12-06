@@ -20,7 +20,7 @@ export default function Inventory({ address }: { address?: string }) {
       {inventory && inventory.length ? (
         <div className="text-lg flex justify-center space-x-4">
           {inventory.map((item: NFT) => {
-            return <InventoryItem item={item} />;
+            return <InventoryItem key={item.metadata.id} item={item} />;
           })}
         </div>
       ) : (

@@ -62,8 +62,9 @@ export function Adventure({
       </div>
       <div className="flex-col text-white my-4 space-y-8 text-xs sm:text-sm md:text-md justify-center items-center sm:justify-start sm:items-start px-4">
         <p>
-          Like any poorly prepared adventurer, it seems you've woken up in a
-          dark cave.
+          {
+            "Like any poorly prepared adventurer, it seems you've woken up in a dark cave."
+          }
         </p>
         <p>
           Options:{" "}
