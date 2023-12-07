@@ -35,7 +35,6 @@ export default function InventoryItem({ item }: { item: NFT }) {
         style={{ width: "fit-content" }}
       >
         <div className="flex space-x-4 justify-center items-center">
-          <button className="text-white text-sm hover:opacity-80">Use</button>
           <Dialog>
             <DialogTrigger>
               <button className="text-white text-sm hover:opacity-80">
@@ -47,7 +46,7 @@ export default function InventoryItem({ item }: { item: NFT }) {
                 <DialogTitle className="text-white">
                   <div className="xs:flex-col space-y-4 sm:flex sm:space-x-4 sm:space-y-0 justify-center items-center">
                     <Image
-                      className="border border-white rounded-lg hover:animate-pulse cursor-pointer mx-auto"
+                      className="border border-white rounded-lg hover:animate-pulse cursor-pointer xs:mx-auto lg:mx-0"
                       src={item.metadata.image as string | StaticImport}
                       alt={`${item.metadata.name}`}
                       width={50}

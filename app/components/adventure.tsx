@@ -1,11 +1,11 @@
 import Image from "next/image";
 
 import * as z from "zod";
-import { processInput } from "../utils/actions";
+import { getScene, processInput } from "../utils/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import {
   Form,
   FormControl,
@@ -25,15 +25,15 @@ const FormSchema = z.object({
 
 export function Adventure({
   address,
-  screen,
-  setScreen,
+  scene,
+  setScene,
 }: {
   address: string;
-  screen: number;
-  setScreen: Dispatch<SetStateAction<number>>;
+  scene: number;
+  setScene: (scene: number) => void;
 }) {
-  let options = ["NORTH", "SOUTH"];
   const [message, setMessage] = useState<string>("");
+  const currentScene = getScene(scene);
   const { contract } = useContract(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS);
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -44,8 +44,16 @@ export function Adventure({
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    const response = await processInput(data.input, options, contract);
-    setMessage(response);
+    const response = await processInput(
+      data.input,
+      currentScene,
+      setScene,
+      address,
+      contract,
+    );
+    if (response) {
+      setMessage(response);
+    }
     setTimeout(() => setMessage(""), 3000);
   }
 
@@ -53,24 +61,24 @@ export function Adventure({
     <div className="w-full sm:w-3/4 xl:w-1/2 flex-col items-center justify-center mx-auto">
       <div className="w-full aspect-[2/1] relative">
         <Image
-          src="/cave.png"
-          alt="Cave Imagery"
+          src={currentScene?.image ?? "/weboftruth.png"}
+          alt="Scene Imagery"
           className="mx-auto"
           fill={true}
           priority
         />
       </div>
       <div className="flex-col text-white my-4 space-y-8 text-xs sm:text-sm md:text-md justify-center items-center sm:justify-start sm:items-start px-4">
-        <p>
-          {
-            "Like any poorly prepared adventurer, it seems you've woken up in a dark cave."
-          }
-        </p>
+        <p>{currentScene?.description}</p>
         <p>
           Options:{" "}
-          {options.map((option: string, index: number) => {
-            return `${option}${index === options.length - 1 ? "" : ", "}`;
-          })}
+          {currentScene?.options
+            ? currentScene.options.map((option: string, index: number) => {
+                return `${option}${
+                  index === currentScene.options!!.length - 1 ? "" : ", "
+                }`;
+              })
+            : "LEAVE"}
         </p>
 
         <Form {...form}>

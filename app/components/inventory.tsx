@@ -24,7 +24,7 @@ export default function Inventory({ address }: { address?: string }) {
           })}
         </div>
       ) : (
-        <h3 className="text-lg text-white flex items-center justify-center text-center">
+        <h3 className="text-sm md:text-md lg:text-lg text-white flex items-center justify-center text-center">
           {inventory && !inventory.length
             ? "Your inventory is empty."
             : errorContract || errorNFT
