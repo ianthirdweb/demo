@@ -7,15 +7,18 @@ import { StartScreen } from "./start-screen";
 import { Adventure } from "./adventure";
 
 export function Game() {
+  let startAudio = new Audio("/start.wav");
   const address = useAddress();
-  // const localStorageScene = localStorage.getItem("current-scene")
-  //   ? parseInt(localStorage.getItem("current-scene")!!)
-  //   : 0;
   const [scene, setScene] = useState(0);
 
   function changeScene(scene: number) {
     setScene(scene);
     localStorage.setItem("current-scene", `${scene}`);
+  }
+
+  if (address && !(localStorage.getItem("logged-in") === "true")) {
+    localStorage.setItem("logged-in", "true");
+    startAudio.play();
   }
 
   return (

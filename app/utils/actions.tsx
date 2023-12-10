@@ -97,7 +97,7 @@ export async function processSceneAction(
     case 9:
       return processScene9Actions(INPUT, scene, setScene);
     case 10:
-      return processScene10Actions(INPUT, scene, setScene);
+      return processScene10Actions(INPUT, scene, setScene, address, contract);
     case 11:
       return processScene11Actions(INPUT, scene, setScene);
     case 12:
@@ -152,7 +152,6 @@ export async function processScene0Actions(
   if (scene.options?.includes(INPUT)) {
     if (INPUT == "SOUTH") {
       const torchBalance = await contract?.erc1155.balanceOf(address, 3);
-      console.log(torchBalance);
       if (torchBalance && Number(torchBalance._hex) >= 1) {
         setScene(scene.adjacentScenes[1]);
         return "You travel South.";
@@ -315,11 +314,13 @@ export function processScene9Actions(
   }
 }
 
-export function processScene10Actions(
+export async function processScene10Actions(
   INPUT: string,
   scene: Scene,
   setScene: (scene: number) => void,
-): void | string {
+  address: string,
+  contract: SmartContract<BaseContract> | undefined,
+): Promise<string | void> {
   if (scene.options?.includes(INPUT)) {
     navigateToScene(INPUT, scene, setScene);
   } else {
@@ -327,8 +328,14 @@ export function processScene10Actions(
       case "DESCEND WELL":
       case "WELL":
       case "USE WELL":
-        setScene(1);
-        return "You descend down the well.";
+        const torchBalance = await contract?.erc1155.balanceOf(address, 3);
+        if (torchBalance && Number(torchBalance._hex) >= 1) {
+          setScene(1);
+          return "You enter a dark cave.";
+        } else {
+          return "You'll need a torch to make you way down the well.";
+        }
+
       default:
         return "That action isn't available";
     }

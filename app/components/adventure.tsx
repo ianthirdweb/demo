@@ -93,7 +93,7 @@ export function Adventure({
                       <p>{">"}</p>
                       <Input
                         {...field}
-                        className="uppercase border-0 focus:border-0 outline-none"
+                        className="uppercase border-0 ring-0"
                         style={{ caretShape: "block" }}
                         autoFocus
                       />

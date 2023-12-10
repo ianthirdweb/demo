@@ -17,6 +17,15 @@ export function StartScreen({ address }: { address?: string }) {
           <ConnectWalletButton title={"START GAME"} />
         </div>
       )}
+      <video
+        autoPlay
+        muted
+        loop
+        className="fixed w-screen h-screen opacity-10 z-0 top-0 left-0 blur"
+        style={{ zIndex: -1 }}
+      >
+        <source src="/dust.mp4" type="video/mp4" />
+      </video>
     </div>
   );
 }

@@ -44,9 +44,9 @@ export default function InventoryItem({ item }: { item: NFT }) {
             <DialogContent className="p-12">
               <DialogHeader className="flex-column space-y-4">
                 <DialogTitle className="text-white">
-                  <div className="xs:flex-col space-y-4 sm:flex sm:space-x-4 sm:space-y-0 justify-center items-center">
+                  <div className="xs:flex-col space-y-4 sm:flex sm:space-x-4 sm:space-y-0 justify-center items-center lg:justify-start">
                     <Image
-                      className="border border-white rounded-lg hover:animate-pulse cursor-pointer xs:mx-auto lg:mx-0"
+                      className="border border-white rounded-lg xs:mx-auto lg:mx-0"
                       src={item.metadata.image as string | StaticImport}
                       alt={`${item.metadata.name}`}
                       width={50}
@@ -59,12 +59,12 @@ export default function InventoryItem({ item }: { item: NFT }) {
                 <DialogDescription>
                   {item.metadata.description}
                 </DialogDescription>
-                <DialogClose asChild>
-                  <p className="text-white text-sm hover:opacity-80 mx-auto">
-                    Close
-                  </p>
-                </DialogClose>
               </DialogHeader>
+              <DialogClose asChild>
+                <p className="flex text-white text-sm hover:opacity-80 mx-auto lg:mx-0">
+                  Close
+                </p>
+              </DialogClose>
             </DialogContent>
           </Dialog>
           <Dialog>
