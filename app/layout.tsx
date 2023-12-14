@@ -26,8 +26,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ThirdwebProvider
-            clientId="6f4b9d28993ca599e4fc109a86ffae22"
-            activeChain={"mumbai"}
+            clientId={process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID}
+            activeChain={process.env.NEXT_PUBLIC_THIRDWEB_ACTIVE_CHAIN}
           >
             {children}
           </ThirdwebProvider>

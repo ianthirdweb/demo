@@ -37,21 +37,16 @@ const scenes = [
     image: "/abandoned-monastery.png",
     description: "TBD",
     options: ["NORTH", "SOUTH"],
-    interactions: [
-      "PRESS TOP STONE",
-      "PRESS LEFT STONE",
-      "PRESS RIGHT STONE",
-      "PRESS BOTTOM STONE",
-    ],
-    adjacentScenes: [5, 3, -1, -1],
+    interactions: [],
+    adjacentScenes: [21, 3, -1, -1],
   },
   {
     id: 5,
     image: "/decrepit-belfry.png",
     description: "TBD",
     options: ["SOUTH"],
-    interactions: ["SEARCH SKELETON", "SKELETON", "TAKE SCROLL"],
-    adjacentScenes: [-1, 4, -1, -1],
+    interactions: ["SEARCH SKELETON", "SKELETON"],
+    adjacentScenes: [-1, 21, -1, -1],
   },
   {
     id: 6,
@@ -66,12 +61,12 @@ const scenes = [
     image: "/pond.png", // DNE
     description: "TBD",
     options: ["SOUTH"],
-    interactions: ["TAKE FROG", "PICK UP FROG"],
+    interactions: ["TAKE FROG", "PICK UP FROG", "FROG"],
     adjacentScenes: [-1, 6, -1, -1],
   },
   {
     id: 8,
-    image: "/deep-forest.png", // DNE
+    image: "/deep-forest.png",
     description: "TBD",
     options: ["NORTH", "WEST"],
     interactions: ["CUT BRANCHES"],
@@ -79,7 +74,7 @@ const scenes = [
   },
   {
     id: 9,
-    image: "/dragons-nest.png", // DNE
+    image: "/dragons-nest.png",
     description: "TBD",
     options: ["SOUTH"],
     interactions: ["FIGHT", "SPEAK TO DRAGON", "SPEAK", "RUN"],
@@ -87,7 +82,7 @@ const scenes = [
   },
   {
     id: 10,
-    image: "/village-outskirts.png", // DNE
+    image: "/village-outskirts.png",
     description: "TBD",
     options: ["NORTH", "SOUTH"],
     interactions: ["WELL", "DESCEND WELL"],
@@ -95,7 +90,7 @@ const scenes = [
   },
   {
     id: 11,
-    image: "/village.png", // DNE
+    image: "/village.png",
     description: "TBD",
     options: ["NORTH"],
     interactions: [
@@ -114,7 +109,7 @@ const scenes = [
   },
   {
     id: 12,
-    image: "/tavern.png", // DNE
+    image: "/tavern.png",
     description: "TBD",
     interactions: [
       "LEAVE TAVERN",
@@ -133,14 +128,14 @@ const scenes = [
   },
   {
     id: 13,
-    image: "/adventurer.png", // DNE
+    image: "/adventurer.png",
     description: "TBD",
     interactions: ["SAY GOODBYE", "LEAVE", "INQUIRE", "YES", "NO", "GIVE WEB"],
     adjacentScenes: [10, 14, -1, -1],
   },
   {
     id: 14,
-    image: "/crying-boy.png", // DNE
+    image: "/crying-boy.png",
     description: "TBD",
     interactions: [
       "INQUIRE",
@@ -151,7 +146,7 @@ const scenes = [
       "YES",
       "NO",
     ],
-    adjacentScenes: [10, 14, -1, -1],
+    adjacentScenes: [-1, -1, -1, -1],
   },
   {
     id: 15,
@@ -162,7 +157,7 @@ const scenes = [
   },
   {
     id: 16,
-    image: "/dragon-fight.png", // DNE
+    image: "/dragon-fight.png",
     description: "TBD",
     interactions: [
       "USE SWORD",
@@ -180,8 +175,8 @@ const scenes = [
     adjacentScenes: [-1, 8, -1, -1],
   },
   {
-    id: 16,
-    image: "/dragon-talk.png", // DNE
+    id: 17,
+    image: "/dragon-talk.png",
     description: "TBD",
     interactions: [
       "ASK FOR SCALE",
@@ -194,18 +189,33 @@ const scenes = [
     adjacentScenes: [-1, 8, -1, -1],
   },
   {
-    id: 17,
+    id: 18,
     image: "/matriarch-death.png", // DNE
     description: "TBD",
     interactions: ["TAKE WEB", "LEAVE"],
     adjacentScenes: [1, -1, -1, -1],
   },
   {
-    id: 18,
-    image: "/dragon-death.png", // DNE
+    id: 19,
+    image: "/dragon-death.png",
     description: "TBD",
     interactions: ["TAKE SCALE", "PICK UP SCALE", "LEAVE"],
     adjacentScenes: [-1, 8, -1, -1],
+  },
+  {
+    id: 20,
+    image: "/boy-and-frog.png",
+    description: "Hello",
+    interactions: ["GOODBYE", "SAY GOODBYE", "LEAVE"],
+    adjacentScenes: [-1, -1, -1, -1],
+  },
+  {
+    id: 21,
+    image: "/monastery-entrance.png",
+    description: "TBD",
+    options: ["NORTH", "SOUTH"],
+    interactions: [],
+    adjacentScenes: [5, 4, -1, -1],
   },
 ];
 

@@ -9,7 +9,10 @@ import { Adventure } from "./adventure";
 export function Game() {
   let startAudio = new Audio("/start.wav");
   const address = useAddress();
-  const [scene, setScene] = useState(0);
+  const startingScene = localStorage.getItem("current-scene");
+  const [scene, setScene] = useState(
+    startingScene ? parseInt(startingScene) : 0,
+  );
 
   function changeScene(scene: number) {
     setScene(scene);
