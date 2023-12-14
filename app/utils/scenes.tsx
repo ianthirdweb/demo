@@ -11,7 +11,8 @@ const scenes = [
   {
     id: 1,
     image: "/deep-cave.png",
-    description: "TBD",
+    description:
+      "The depths of the cave open up to a large sanctum. Your surroundings are eerily still, lit up only by a stream of light pouring in from the ceiling. Not a single creature is stirring within these walls. Seems something much larger lurks within, preying on whatever comes by. To the south, you see a path leading deeper into the cave. To the north, you see the cave entrance. An old ladder left behind by other adventurers sits between you and the ceiling.",
     options: ["NORTH", "SOUTH"],
     interactions: ["USE LADDER", "LADDER", "CLIMB LADDER"],
     adjacentScenes: [0, 2, -1, -1],
@@ -19,7 +20,8 @@ const scenes = [
   {
     id: 2,
     image: "/matriarchs-lair.png",
-    description: "TBD",
+    description:
+      "You follow the southern path to a sinister maw covered in cobwebs. You spot the eyes of a large spider hanging above you, lit up only by the flame of your torch. It is not aware of your presence—thank the Gods. Without a weapon, it would be unwise to approach it.",
     options: ["NORTH"],
     interactions: ["FIGHT"],
     adjacentScenes: [1, -1, -1, -1],
@@ -27,7 +29,8 @@ const scenes = [
   {
     id: 3,
     image: "/field.png",
-    description: "TBD",
+    description:
+      "As you exit the cave, your eyes slowly adjust to the sunlight. Blurry white turns to vibrant greens as you happen upon a lush field. To the north, you see a large estate just over the hills. To the east, a dense forest. Towards the south, lies the cave that began your journey.",
     options: ["NORTH", "SOUTH", "EAST"],
     interactions: [],
     adjacentScenes: [4, 0, 6, -1],
@@ -35,7 +38,8 @@ const scenes = [
   {
     id: 4,
     image: "/abandoned-monastery.png",
-    description: "TBD",
+    description:
+      "As you climb the hills, the large estate turns dusty and grey, its weathered facade pointing to years of neglect. You can continue moving north towards the entrance. Or perhaps its best to return to the fields to the south.",
     options: ["NORTH", "SOUTH"],
     interactions: [],
     adjacentScenes: [21, 3, -1, -1],
@@ -43,23 +47,26 @@ const scenes = [
   {
     id: 5,
     image: "/decrepit-belfry.png",
-    description: "TBD",
+    description:
+      'At the top of the monastery, you find a panoramic view looking back over the fields. The grey rain clouds move further out, the rain settling. A single skeleton sits perched against the wall. You see something held tightly in its clutches. On the table you see a book titled "Dracomancy: The History of Dragon Magic"',
     options: ["SOUTH"],
     interactions: ["SEARCH SKELETON", "SKELETON"],
     adjacentScenes: [-1, 21, -1, -1],
   },
   {
     id: 6,
-    image: "/forest.png", // DNE
-    description: "TBD",
+    image: "/forest.png",
+    description:
+      "The harsh sunlight of the fields recedes as you walk further beneath the dense canopy of the forest. Several minutes into your travels, find a clearing. Worn paths and crushed underbrush indicate that this is a well-traveled location. To the north, you hear the trickling sounds of running water. To the east, the light recedes further as the greenery thickens. To the south, you see a bright light and a fence.",
     options: ["NORTH", "SOUTH", "EAST", "WEST"],
     interactions: [],
     adjacentScenes: [7, 10, 8, 3],
   },
   {
     id: 7,
-    image: "/pond.png", // DNE
-    description: "TBD",
+    image: "/pond.png",
+    description:
+      "You happen upon a small pond, its surface shimmering with the incoming light from the canopy above. A frog sits on a lilypad at the edge of the pond, noting your presence.",
     options: ["SOUTH"],
     interactions: ["TAKE FROG", "PICK UP FROG", "FROG"],
     adjacentScenes: [-1, 6, -1, -1],
@@ -67,7 +74,8 @@ const scenes = [
   {
     id: 8,
     image: "/deep-forest.png",
-    description: "TBD",
+    description:
+      "As you travel deeper into the forest, a shiver runs down your spine. There is danger here, but you do not know where. Without a weapon, you decide it is best to turn back.",
     options: ["NORTH", "WEST"],
     interactions: ["CUT BRANCHES"],
     adjacentScenes: [9, -1, -1, 6],
@@ -75,7 +83,8 @@ const scenes = [
   {
     id: 9,
     image: "/dragons-nest.png",
-    description: "TBD",
+    description:
+      "The deep forest reveals a large tree. At its base, a sleeping dragon is curled up in its nest. The dragon is beautiful, yet menacing. It's green scales shine vibrantly, it's presence surging with the soul energy of the forest.",
     options: ["SOUTH"],
     interactions: ["FIGHT", "SPEAK TO DRAGON", "SPEAK", "RUN"],
     adjacentScenes: [-1, 8, -1, -1],
@@ -83,7 +92,8 @@ const scenes = [
   {
     id: 10,
     image: "/village-outskirts.png",
-    description: "TBD",
+    description:
+      "You happen upon a patch of farm land sitting just outside of a bustling village. Tradesman pass you by in their carts, acknowleding your presence but not engaging for fear that you may steal their wares. Perhaps you should follow them south into the village. A well stands next to one of the farms, seemingly as the water source for the surrounding families.",
     options: ["NORTH", "SOUTH"],
     interactions: ["WELL", "DESCEND WELL"],
     adjacentScenes: [6, 11, -1, -1],
@@ -91,7 +101,8 @@ const scenes = [
   {
     id: 11,
     image: "/village.png",
-    description: "TBD",
+    description:
+      "You enter the center of a populous village. In front of you is the entrance to the most popular tavern in town. You notice a boy crying in the alleyway.",
     options: ["NORTH"],
     interactions: [
       "ENTER",
@@ -110,7 +121,8 @@ const scenes = [
   {
     id: 12,
     image: "/tavern.png",
-    description: "TBD",
+    description:
+      "The tavern is lively. People are singing and enjoying themselves, except for one man who seems to be sitting with his sword at the bar, ignoring the pomp and circumstance of the venue.",
     interactions: [
       "LEAVE TAVERN",
       "EXIT TAVERN",
@@ -129,14 +141,16 @@ const scenes = [
   {
     id: 13,
     image: "/adventurer.png",
-    description: "TBD",
+    description:
+      "The adventurer looks at you with a skeptical glance. Perhaps not the friendliest man, but the sword sitting next to him could be of use to you.",
     interactions: ["SAY GOODBYE", "LEAVE", "INQUIRE", "YES", "NO", "GIVE WEB"],
     adjacentScenes: [10, 14, -1, -1],
   },
   {
     id: 14,
     image: "/crying-boy.png",
-    description: "TBD",
+    description:
+      'Through his tears, the boy looks up at you. "Sir, could you help me? I lost my pet frog. I don\'t know where it went. I lost him while I was running out in the fields."',
     interactions: [
       "INQUIRE",
       "INQUIRE ABOUT FROG",
@@ -205,14 +219,16 @@ const scenes = [
   {
     id: 20,
     image: "/boy-and-frog.png",
-    description: "Hello",
+    description:
+      'The boy grabs the frog from you excitedly. A smile sweeps acrsoss his face. "YOU FOUND HIM!" The boy reaches into this pocket. "Here, sir, I found this thing when I was playing in the fields. You should have it."',
     interactions: ["GOODBYE", "SAY GOODBYE", "LEAVE"],
     adjacentScenes: [-1, -1, -1, -1],
   },
   {
     id: 21,
     image: "/monastery-entrance.png",
-    description: "TBD",
+    description:
+      "You approach a heavy, ornate door. As you approach, it begins to rain. Upon close inspection it was clear this large estate was once a thriving monastery. The windows are too high to see in.",
     options: ["NORTH", "SOUTH"],
     interactions: [],
     adjacentScenes: [5, 4, -1, -1],

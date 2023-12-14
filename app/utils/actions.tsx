@@ -693,15 +693,25 @@ export async function processScene21Actions(
         localStorage.getItem("monastery-unlocked") === "true"
       ) {
         setScene(scene.adjacentScenes[0]);
-        return "You travel North.";
+        return "You open the door and make your way up to the belfry.";
       } else {
-        return "The door is locked.";
+        return "The door is locked. The keyhole is rusted over.";
       }
     } else {
       return navigateToScene(INPUT, scene, setScene);
     }
   } else {
     switch (INPUT) {
+      case "OPEN DOOR":
+        if (
+          typeof window !== "undefined" &&
+          localStorage.getItem("monastery-unlocked") === "true"
+        ) {
+          setScene(scene.adjacentScenes[0]);
+          return "You open the door and make your way up to the belfry.";
+        } else {
+          return "The door is locked. The keyhole is rusted over.";
+        }
       case "WALK AROUND":
       case "GO AROUND":
         return "Around what? This place is enormous. It's best to turn back.";
