@@ -174,7 +174,7 @@ export async function processScene0Actions(
   contract: SmartContract<BaseContract> | undefined,
 ): Promise<void | string> {
   const torchBalance = await contract?.erc1155.balanceOf(address, 3);
-  localStorage.setItem("game-start", "true");
+  typeof window !== "undefined" && localStorage.setItem("game-start", "true");
   if (scene.options?.includes(INPUT)) {
     navigateToScene(INPUT, scene, setScene);
   } else {
@@ -413,7 +413,10 @@ export function processScene11Actions(
       case "SPEAK TO CRYING BOY":
       case "TALK":
       case "SPEAK":
-        if (localStorage.getItem("boy-puzzle-solved") === "true") {
+        if (
+          typeof window !== "undefined" &&
+          localStorage.getItem("boy-puzzle-solved") === "true"
+        ) {
           setScene(20);
         } else {
           setScene(14);
@@ -471,14 +474,16 @@ export async function processScene13Actions(
       case "ASK":
       case "ASK ABOUT SWORD":
       case "ASK FOR SWORD":
-        localStorage.setItem("adventurer-inquired", "true");
+        typeof window !== "undefined" &&
+          localStorage.setItem("adventurer-inquired", "true");
         return "You ask about the sword.";
       case "TELL YOUR STORY":
       case "TELL STORY":
       case "BOAST":
       case "REGALE HIM":
         if (localStorage.getItem("adventurer-inquired") === "true") {
-          localStorage.setItem("persuaded-adventurer", "true");
+          typeof window !== "undefined" &&
+            localStorage.setItem("persuaded-adventurer", "true");
           if (swordBalance && Number(swordBalance._hex) >= 1) {
             return "The adventurer has already heard this. You've bored him.";
           } else {
@@ -513,13 +518,17 @@ export async function processScene14Actions(
       case "FROG":
       case "GIVE FROG":
         const frogBalance = await contract?.erc1155.balanceOf(address, 4);
-        if (localStorage.getItem("boy-puzzle-solved") === "true") {
+        if (
+          typeof window !== "undefined" &&
+          localStorage.getItem("boy-puzzle-solved") === "true"
+        ) {
           return "The boy thanks you again for finding his frog.";
         } else {
           if (frogBalance && Number(frogBalance._hex) >= 1) {
             setScene(20);
             takeKey(contract);
-            localStorage.setItem("boy-puzzle-solved", "true");
+            typeof window !== "undefined" &&
+              localStorage.setItem("boy-puzzle-solved", "true");
             return "You give the frog to the boy.";
           } else {
             return "The boy cries harder. Stop teasing him!";
@@ -643,7 +652,10 @@ export async function processScene21Actions(
   const keyBalance = await contract?.erc1155.balanceOf(address, 5);
   if (scene.options?.includes(INPUT)) {
     if (INPUT == "NORTH") {
-      if (localStorage.getItem("monastery-unlocked") === "true") {
+      if (
+        typeof window !== "undefined" &&
+        localStorage.getItem("monastery-unlocked") === "true"
+      ) {
         setScene(scene.adjacentScenes[0]);
         return "You travel North.";
       } else {
@@ -667,12 +679,16 @@ export async function processScene21Actions(
       case "KEY":
       case "USE KEY":
       case "UNLOCK DOOR":
-        if (localStorage.getItem("monastery-unlocked") === "true") {
+        if (
+          typeof window !== "undefined" &&
+          localStorage.getItem("monastery-unlocked") === "true"
+        ) {
           return "The door is already unlocked.";
         } else {
           if (keyBalance && Number(keyBalance._hex) >= 1) {
             setScene(5);
-            localStorage.setItem("monastery-unlocked", "true");
+            typeof window !== "undefined" &&
+              localStorage.setItem("monastery-unlocked", "true");
             return "You unlock the door.";
           } else {
             return "You don't have a key to unlock this door.";

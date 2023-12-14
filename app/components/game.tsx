@@ -7,21 +7,33 @@ import { StartScreen } from "./start-screen";
 import { Adventure } from "./adventure";
 
 export function Game() {
-  let startAudio = new Audio("/start.wav");
+  let startAudio;
+  if (typeof window !== "undefined") {
+    startAudio = new Audio("/start.wav");
+  }
   const address = useAddress();
-  const startingScene = localStorage.getItem("current-scene");
+  const startingScene =
+    typeof window !== "undefined"
+      ? localStorage.getItem("current-scene")
+      : null;
   const [scene, setScene] = useState(
     startingScene ? parseInt(startingScene) : 0,
   );
 
   function changeScene(scene: number) {
     setScene(scene);
-    localStorage.setItem("current-scene", `${scene}`);
+
+    typeof window !== "undefined" &&
+      localStorage.setItem("current-scene", `${scene}`);
   }
 
-  if (address && !(localStorage.getItem("logged-in") === "true")) {
+  if (
+    address &&
+    typeof window !== "undefined" &&
+    !(localStorage.getItem("logged-in") === "true")
+  ) {
     localStorage.setItem("logged-in", "true");
-    startAudio.play();
+    startAudio?.play();
   }
 
   return (

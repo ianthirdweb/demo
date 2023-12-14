@@ -5,7 +5,7 @@ export function StartScreen({ address }: { address?: string }) {
   return (
     <div className="w-full flex-col items-center text-center justify-center">
       <Image
-        src="/weboftruth.png"
+        src={`${process.env.NEXT_PUBLIC_AWS_S3}/weboftruth.png`}
         alt="Web of Truth Logo"
         className="mx-auto"
         width={700}
@@ -21,10 +21,13 @@ export function StartScreen({ address }: { address?: string }) {
         autoPlay
         muted
         loop
-        className="fixed w-screen h-screen opacity-10 z-0 top-0 left-0 blur"
+        className="fixed w-screen h-screen opacity-30 z-0 top-0 left-0 blur-sm"
         style={{ zIndex: -1 }}
       >
-        <source src="/dust.mp4" type="video/mp4" />
+        <source
+          src={`${process.env.NEXT_PUBLIC_AWS_S3}/dust.mp4`}
+          type="video/mp4"
+        />
       </video>
     </div>
   );

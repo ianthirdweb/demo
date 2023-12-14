@@ -18,19 +18,21 @@ export default function Home() {
 }
 
 function useAudio(url: string) {
-  const [audio] = useState(new Audio(url));
+  const [audio] = useState(
+    typeof window !== "undefined" ? new Audio(url) : null,
+  );
   const [playing, setPlaying] = useState(false);
 
   const toggle = () => setPlaying(!playing);
 
   useEffect(() => {
-    playing ? audio.play() : audio.pause();
+    playing ? audio?.play() : audio?.pause();
   }, [playing]);
 
   useEffect(() => {
-    audio.addEventListener("ended", () => audio.play());
+    audio?.addEventListener("ended", () => audio?.play());
     return () => {
-      audio.removeEventListener("ended", () => audio.play());
+      audio?.removeEventListener("ended", () => audio?.play());
     };
   }, []);
 

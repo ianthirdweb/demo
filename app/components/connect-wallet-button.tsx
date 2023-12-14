@@ -7,7 +7,11 @@ export default function ConnectWalletButton({ title }: { title: string }) {
     <ConnectWallet
       className="w-full"
       btnTitle={title}
-      auth={{ onLogout: () => localStorage.setItem("logged-in", "false") }}
+      auth={{
+        onLogout: () =>
+          typeof window !== "undefined" &&
+          localStorage.setItem("logged-in", "false"),
+      }}
     />
   );
 }
