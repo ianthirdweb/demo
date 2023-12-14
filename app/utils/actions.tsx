@@ -97,7 +97,13 @@ export async function processSceneAction(
         contract,
       );
     case 1:
-      return processScene1Actions(INPUT, scene, setScene, address, contract);
+      return await processScene1Actions(
+        INPUT,
+        scene,
+        setScene,
+        address,
+        contract,
+      );
     case 2:
       return processScene2Actions(INPUT, scene, setScene);
     case 3:
@@ -105,11 +111,23 @@ export async function processSceneAction(
     case 4:
       return processScene4Actions(INPUT, scene, setScene);
     case 5:
-      return processScene5Actions(INPUT, scene, setScene, address, contract);
+      return await processScene5Actions(
+        INPUT,
+        scene,
+        setScene,
+        address,
+        contract,
+      );
     case 6:
       return processScene6Actions(INPUT, scene, setScene);
     case 7:
-      return processScene7Actions(INPUT, scene, setScene, address, contract);
+      return await processScene7Actions(
+        INPUT,
+        scene,
+        setScene,
+        address,
+        contract,
+      );
     case 8:
       return processScene8Actions(INPUT, scene, setScene);
     case 9:
@@ -121,9 +139,21 @@ export async function processSceneAction(
     case 12:
       return processScene12Actions(INPUT, scene, setScene);
     case 13:
-      return processScene13Actions(INPUT, scene, setScene, address, contract);
+      return await processScene13Actions(
+        INPUT,
+        scene,
+        setScene,
+        address,
+        contract,
+      );
     case 14:
-      return processScene14Actions(INPUT, scene, setScene, address, contract);
+      return await processScene14Actions(
+        INPUT,
+        scene,
+        setScene,
+        address,
+        contract,
+      );
     case 15:
       return processScene15Actions(INPUT, scene, setScene);
     case 16:
@@ -137,7 +167,13 @@ export async function processSceneAction(
     case 20:
       return processScene20Actions(INPUT, scene, setScene);
     case 21:
-      return processScene21Actions(INPUT, scene, setScene, address, contract);
+      return await processScene21Actions(
+        INPUT,
+        scene,
+        setScene,
+        address,
+        contract,
+      );
     default:
       return "That action isn't available";
   }
@@ -176,7 +212,7 @@ export async function processScene0Actions(
   const torchBalance = await contract?.erc1155.balanceOf(address, 3);
   typeof window !== "undefined" && localStorage.setItem("game-start", "true");
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       case "TORCH":
@@ -211,7 +247,7 @@ export async function processScene1Actions(
         return "It is too dark to travel further into the cave.";
       }
     } else {
-      navigateToScene(INPUT, scene, setScene);
+      return navigateToScene(INPUT, scene, setScene);
     }
   } else {
     switch (INPUT) {
@@ -232,7 +268,7 @@ export function processScene2Actions(
   setScene: (scene: number) => void,
 ): void | string {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       default:
@@ -247,7 +283,7 @@ export function processScene3Actions(
   setScene: (scene: number) => void,
 ): void | string {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       default:
@@ -262,7 +298,7 @@ export function processScene4Actions(
   setScene: (scene: number) => void,
 ): void | string {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       default:
@@ -279,7 +315,7 @@ export async function processScene5Actions(
   contract: SmartContract<BaseContract> | undefined,
 ): Promise<void | string> {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     const scrollBalance = await contract?.erc1155.balanceOf(address, 4);
     switch (INPUT) {
@@ -303,7 +339,7 @@ export function processScene6Actions(
   setScene: (scene: number) => void,
 ): void | string {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       default:
@@ -320,7 +356,7 @@ export async function processScene7Actions(
   contract: SmartContract<BaseContract> | undefined,
 ): Promise<string | void> {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     const frogBalance = await contract?.erc1155.balanceOf(address, 4);
     switch (INPUT) {
@@ -351,7 +387,7 @@ export function processScene8Actions(
   setScene: (scene: number) => void,
 ): void | string {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       default:
@@ -366,7 +402,7 @@ export function processScene9Actions(
   setScene: (scene: number) => void,
 ): void | string {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       default:
@@ -381,7 +417,7 @@ export function processScene10Actions(
   setScene: (scene: number) => void,
 ): string | void {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       case "DESCEND WELL":
@@ -401,7 +437,7 @@ export function processScene11Actions(
   setScene: (scene: number) => void,
 ): void | string {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       case "BOY":
@@ -438,7 +474,7 @@ export function processScene12Actions(
   setScene: (scene: number) => void,
 ): void | string {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       case "ADVENTURER":
@@ -467,7 +503,7 @@ export async function processScene13Actions(
 ): Promise<void | string> {
   const swordBalance = await contract?.erc1155.balanceOf(address, 6);
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       case "INQUIRE":
@@ -512,7 +548,7 @@ export async function processScene14Actions(
   contract: SmartContract<BaseContract> | undefined,
 ): Promise<void | string> {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       case "FROG":
@@ -549,7 +585,7 @@ export function processScene15Actions(
   setScene: (scene: number) => void,
 ): void | string {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       default:
@@ -564,7 +600,7 @@ export function processScene16Actions(
   setScene: (scene: number) => void,
 ): void | string {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       default:
@@ -579,7 +615,7 @@ export function processScene17Actions(
   setScene: (scene: number) => void,
 ): void | string {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       default:
@@ -594,7 +630,7 @@ export function processScene18Actions(
   setScene: (scene: number) => void,
 ): void | string {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       default:
@@ -609,7 +645,7 @@ export function processScene19Actions(
   setScene: (scene: number) => void,
 ): void | string {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       case "GOODBYE":
@@ -628,7 +664,7 @@ export function processScene20Actions(
   setScene: (scene: number) => void,
 ): void | string {
   if (scene.options?.includes(INPUT)) {
-    navigateToScene(INPUT, scene, setScene);
+    return navigateToScene(INPUT, scene, setScene);
   } else {
     switch (INPUT) {
       case "LEAVE":
@@ -662,7 +698,7 @@ export async function processScene21Actions(
         return "The door is locked.";
       }
     } else {
-      navigateToScene(INPUT, scene, setScene);
+      return navigateToScene(INPUT, scene, setScene);
     }
   } else {
     switch (INPUT) {

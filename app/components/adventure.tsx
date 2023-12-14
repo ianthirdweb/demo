@@ -5,7 +5,7 @@ import { getScene, processInput } from "../utils/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Form,
   FormControl,
@@ -43,6 +43,10 @@ export function Adventure({
     },
   });
 
+  useEffect(() => {
+    console.log(message);
+  }, [message]);
+
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     const response = await processInput(
       data.input,
@@ -55,7 +59,7 @@ export function Adventure({
       setMessage(response);
     }
     form.setValue("input", "");
-    setTimeout(() => setMessage(""), 4000);
+    setTimeout(() => setMessage(""), 3000);
   }
 
   return (
